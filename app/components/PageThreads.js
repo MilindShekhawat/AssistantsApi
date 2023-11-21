@@ -12,7 +12,7 @@ export default function PageThreads(props) {
           assistants={props.data}
           isCollapsed={true}
         />
-        <ThreadsSidebar assistants={props.assistant} />
+        <ThreadsSidebar assistant={props.assistant} />
       </div>
     </Provider>
   )

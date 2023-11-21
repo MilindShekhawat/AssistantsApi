@@ -1,5 +1,5 @@
 import PageThreads from "../components/PageThreads"
-import { GetAssistant, GetAssistants } from "../config/assistantsconfig"
+import { GetAssistant, GetAssistants } from "../config/assistantscontroller"
 
 export default async function page({ params }) {
   const { data } = await GetAssistants()
