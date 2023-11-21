@@ -1,20 +1,19 @@
-import React from "react"
+import { useSelector } from "react-redux"
 
-export default function Assistants(props) {
+export default function Assistants() {
+  const assistant = useSelector((state) => state.currentAssistant)
   return (
-    <div className='flex flex-col p-2 w-full justify-center'>
-      <h1 className='text-center text-3xl font-bold m-5'>Select your Assistant</h1>
-      <div className='flex flex-wrap gap-2 w-3/5 min-w-[500px] h-auto mx-auto'>
-        {props.assistants.map((assistant) => (
-          <div
-            key={assistant.name}
-            className='flex flex-col flex-grow h-28 w-64 p-2 border-[1px] border-neutral-300 rounded-lg'>
-            <span className='font-bold'>{assistant.name}</span>
-            <span className='font-medium text-xs text-neutral-400'>{assistant.model}</span>
-            <span className='font-medium text-sm text-neutral-600 pt-1'>{assistant.description}</span>
-          </div>
-        ))}
-      </div>
+    <div className='flex flex-col p-2 w-2/4 min-w-[400px] mx-auto justify-center items-center'>
+      <h1 className='text-3xl font-bold mb-5'>Select your Assistant</h1>
+      {assistant.id ? (
+        <div className='flex flex-col py-2 px-5 w-fit min-w-[300px] border-[1px] border-neutral-300 rounded-lg'>
+          <span className='font-bold text-lg'>{assistant.name}</span>
+          <span className='font-medium text-xs text-neutral-400'>{assistant.model}</span>
+          <span className='font-medium text-sm text-neutral-600 pt-2'>{assistant.instructions}</span>
+        </div>
+      ) : (
+        ""
+      )}
     </div>
   )
 }
