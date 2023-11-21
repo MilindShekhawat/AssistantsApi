@@ -8,7 +8,10 @@ export default function PageAssistants(prop) {
   return (
     <Provider store={store}>
       <div className='flex'>
-        <Sidebar assistants={prop.data} />
+        <Sidebar
+          assistants={prop.data}
+          isCollapsed={false}
+        />
         <Assistant />
       </div>
     </Provider>
