@@ -2,12 +2,17 @@
 import Sidebar from "./Sidebar"
 import { Provider } from "react-redux"
 import { store } from "../store"
+import ThreadsSidebar from "./ThreadsSidebar"
 
-export default function PageThreads(prop) {
+export default function PageThreads(props) {
   return (
     <Provider store={store}>
       <div className='flex'>
-        <Sidebar assistants={prop.data} />
+        <Sidebar
+          assistants={props.data}
+          isCollapsed={true}
+        />
+        <ThreadsSidebar assistants={props.assistant} />
       </div>
     </Provider>
   )
