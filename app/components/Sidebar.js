@@ -1,13 +1,17 @@
 "use client"
+import { useState } from "react"
 import { selectAssistant } from "../features/assistants/assistantSlice"
 import { useDispatch } from "react-redux"
 
 export default function Sidebar(props) {
   const dispatch = useDispatch()
+  const [activeBot, setActiveBot] = useState(null)
+
   function displayAssistant(assistant) {
-    console.log(assistant)
+    setActiveBot(assistant)
     dispatch(selectAssistant(assistant))
   }
+
   return (
     <div>
       <div
@@ -17,10 +21,9 @@ export default function Sidebar(props) {
         {props.assistants.map((assistant) => (
           <div
             key={assistant.name}
-            onClick={() => displayAssistant(assistant)}
-            className='flex pl-4 ml-1 mr-2 p-2 rounded-3xl hover:bg-neutral-900'>
+            onMouseEnter={() => displayAssistant(assistant)}
+            className={`flex pl-4 ml-1 mr-2 p-2 rounded-3xl ${activeBot === assistant ? "bg-neutral-800" : ""}`}>
             <span className='font-bold text-neutral-200'>{assistant.name}</span>
-            {/* <span className='font-medium text-sm text-neutral-600 pt-1'>{assistant.description}</span> */}
           </div>
         ))}
       </div>
