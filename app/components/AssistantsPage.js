@@ -6,11 +6,11 @@ import { store } from "../store"
 
 export default function AssistantsPage(prop) {
   return (
-    <Provider
-      store={store}
-      className='flex'>
-      <Sidebar assistants={prop.data} />
-      <Assistants assistants={prop.data} />
+    <Provider store={store}>
+      <div className='flex'>
+        <Sidebar assistants={prop.data} />
+        <Assistants />
+      </div>
     </Provider>
   )
 }
