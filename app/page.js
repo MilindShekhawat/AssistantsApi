@@ -1,11 +1,12 @@
-import AssistantsPage from "./components/AssistantsPage"
+import PageAssistants from "./components/PageAssistants"
 import { GetAssistants } from "./config/getAssistants"
 
 export default async function Home() {
   const { data } = await GetAssistants()
+
   return (
     <main>
-      <AssistantsPage data={data} />
+      <PageAssistants data={data} />
     </main>
   )
 }
