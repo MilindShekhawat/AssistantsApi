@@ -1,3 +1,5 @@
+//? This file connects with next.js's api routes.
+// Get a list of assistants
 export const GetAssistants = async () => {
   const response = await fetch("http://localhost:3000/api/assistants", {
     method: "GET",
@@ -12,6 +14,7 @@ export const GetAssistants = async () => {
   return data.myAssistants
 }
 
+// Get a single assistant
 export const GetAssistant = async (assistantId) => {
   const response = await fetch(`http://localhost:3000/api/assistant/${assistantId}`, {
     method: "GET",
@@ -26,6 +29,7 @@ export const GetAssistant = async (assistantId) => {
   return data.myAssistant
 }
 
+// Create a new thread
 export const CreateThread = async (threadId) => {
   const response = await fetch(`http://localhost:3000/api/threads`, {
     method: "POST",
@@ -37,9 +41,10 @@ export const CreateThread = async (threadId) => {
   }
   console.log("Thread created successfully")
   const data = await response.json()
-  return data
+  return data.emptyThread
 }
 
+// Retrieve a thread
 export const RetrieveThread = async (threadId) => {
   const response = await fetch(`http://localhost:3000/api/threads/thread_y6fQawHZgGz0qyQRgL35PGes`, {
     method: "GET",
@@ -51,9 +56,10 @@ export const RetrieveThread = async (threadId) => {
   }
   console.log("Thread retrieved successfully")
   const data = await response.json()
-  return data
+  return data.myThread
 }
 
+// Delete a thread
 export const DeleteThread = async (threadId) => {
   const response = await fetch(`http://localhost:3000/api/threads/${threadId}`, {
     method: "DELETE",
@@ -65,5 +71,5 @@ export const DeleteThread = async (threadId) => {
   }
   console.log("Thread retrieved successfully")
   const data = await response.json()
-  return data
+  return data.myThread
 }
