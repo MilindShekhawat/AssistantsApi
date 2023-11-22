@@ -5,19 +5,14 @@ export const openai = new OpenAI({
   apiKey: process.env.OPEN_AI_KEY,
 })
 
+// Retrieve a thread
 export async function GET(request, params) {
   const threadId = params.params.threadId
   const myThread = await openai.beta.threads.retrieve(threadId)
-  console.log("RETIREVE", myThread)
   return NextResponse.json({ myThread })
 }
 
-export async function POST() {
-  const emptyThread = await openai.beta.threads.create()
-  console.log("CREATE", emptyThread)
-  return NextResponse.json({ emptyThread })
-}
-
+// Delete a thread
 export async function DELETE(request, params) {
   const threadId = params.params.threadId
   const myThread = await openai.beta.threads.del(threadId)
