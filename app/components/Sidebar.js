@@ -22,7 +22,7 @@ export default function Sidebar(props) {
         <div className='font-bold h-14 text-xl text-neutral-200 pl-5 p-3 border-b border-neutral-800'>Assistants</div>
       )}
       <div
-        className={`overflow-y-scroll ${collapsedSidebar == true ? "w-16" : "w-64"}
+        className={`overflow-y-scroll mt-2 ${collapsedSidebar == true ? "w-16" : "w-64"} 
         scrollbar-thin scrollbar-thumb-neutral-800 scrollbar-thumb-rounded-full hover:scrollbar-thumb-neutral-600`}>
         {props.assistants.map((assistant) => (
           <div key={assistant.name}>
@@ -31,7 +31,7 @@ export default function Sidebar(props) {
               key={assistant.name}
               onMouseEnter={() => displayAssistant(assistant)}
               className={`
-            ${collapsedSidebar == true ? "text-center mt-2 bg-neutral-800" : "pl-5 p-2"}
+            ${collapsedSidebar == true ? "text-center mb-2 bg-neutral-800" : "pl-5 p-2"}
             ${activeItem === assistant ? "bg-neutral-800" : ""}
             flex ml-1 mr-2 h-11 rounded-3xl overflow-hidden`}>
               <span className={`${collapsedSidebar == true ? "text-xs" : "font-bold"} text-neutral-200`}>{assistant.name}</span>

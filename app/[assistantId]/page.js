@@ -1,14 +1,14 @@
 import PageThreads from "../components/PageThreads"
-import { GetAssistant, GetAssistants } from "../config/apiendpoints"
+import { GetAssistant, GetAssistants } from "../services/apiendpoints"
 
 export default async function page({ params }) {
-  const { data } = await GetAssistants()
-  const assistant = await GetAssistant(params.assistantId)
+  const myAssistant = await GetAssistant(params.assistantId)
+  const myAssistants = await GetAssistants()
   return (
     <main>
       <PageThreads
-        data={data}
-        assistant={assistant}
+        assistant={myAssistant}
+        assistants={myAssistants.data}
       />
     </main>
   )

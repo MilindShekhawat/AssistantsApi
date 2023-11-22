@@ -9,7 +9,7 @@ export default function PageThreads(props) {
     <Provider store={store}>
       <div className='flex'>
         <Sidebar
-          assistants={props.data}
+          assistants={props.assistants}
           isCollapsed={true}
         />
         <ThreadsSidebar assistant={props.assistant} />

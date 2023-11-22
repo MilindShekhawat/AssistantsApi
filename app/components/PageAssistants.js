@@ -9,7 +9,7 @@ export default function PageAssistants(props) {
     <Provider store={store}>
       <div className='flex'>
         <Sidebar
-          assistants={props.data}
+          assistants={props.assistants}
           isCollapsed={false}
         />
         <Assistant />
