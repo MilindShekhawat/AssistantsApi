@@ -33,6 +33,7 @@ export const GetAssistant = async (assistantId) => {
 }
 
 // Create a new thread
+//TODO frontend
 export const CreateThread = async (threadId) => {
   const response = await fetch(`http://localhost:3000/api/threads`, {
     method: "POST",
@@ -48,7 +49,8 @@ export const CreateThread = async (threadId) => {
   return data.emptyThread
 }
 
-// Retrieve a thread
+// TODO Retrieve a thread
+//TODO frontend
 export const RetrieveThread = async (threadId) => {
   const response = await fetch(`http://localhost:3000/api/threads/thread_y6fQawHZgGz0qyQRgL35PGes`, {
     method: "GET",
@@ -65,6 +67,7 @@ export const RetrieveThread = async (threadId) => {
 }
 
 // Delete a thread
+//TODO frontend
 export const DeleteThread = async (threadId) => {
   const response = await fetch(`http://localhost:3000/api/threads/${threadId}`, {
     method: "DELETE",
@@ -94,10 +97,12 @@ export const CreateMessage = async (threadId, message) => {
   const data = await response.json()
   console.log("Message created successfully")
   //console.log(data.threadMessages)
+  CreateRun(threadId, "asst_I3zkF7wo9pHrn2YYeMNIMeTL")
   return data.threadMessages
 }
 
 // Get list of all messages in a thread
+//TODO frontend, Will call this only once when page is rendered, call this with only the latest assistant reply and extract last message.
 export const GetMessages = async (threadId) => {
   const response = await fetch(`http://localhost:3000/api/threads/${threadId}/messages`, {
     method: "GET",
@@ -114,6 +119,7 @@ export const GetMessages = async (threadId) => {
 }
 
 // Create a run
+//TODO frontend Called when pressed enter
 export const CreateRun = async (threadId, assistantId) => {
   const response = await fetch(`http://localhost:3000/api/threads/${threadId}/runs`, {
     method: "POST",
@@ -130,7 +136,8 @@ export const CreateRun = async (threadId, assistantId) => {
   return data.run
 }
 
-// List all  runs
+// List all runs
+//TODO frontend probably
 export const GetRuns = async (threadId) => {
   const response = await fetch(`http://localhost:3000/api/threads/${threadId}/runs`, {
     method: "GET",
