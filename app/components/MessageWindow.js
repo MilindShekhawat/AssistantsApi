@@ -1,7 +1,7 @@
 import { useSelector } from "react-redux"
 import Link from "next/link"
 import { useState } from "react"
-import { CreateMessage } from "../services/apiendpoints"
+import { CreateMessage, CreateRun } from "../services/apiendpoints"
 
 export default function MessageWindow() {
   const [inputValue, setInputValue] = useState("")
@@ -14,7 +14,7 @@ export default function MessageWindow() {
     if (e.key === "Enter") {
       e.preventDefault()
       if (inputValue.trim() !== "") {
-        setValidationMessage(`You entered: ${inputValue}`)
+        setValidationMessage(inputValue)
       } else {
         setValidationMessage("Please enter a value.")
       }
@@ -22,19 +22,22 @@ export default function MessageWindow() {
     }
   }
   const submitxyz = () => {
-    const x = CreateMessage("thread_y6fQawHZgGz0qyQRgL35PGes", "paper")
+    const x = CreateRun("thread_y6fQawHZgGz0qyQRgL35PGes", "asst_I3zkF7wo9pHrn2YYeMNIMeTL")
   }
   return (
-    <div className='flex flex-col flex-grow min-w-[400px] h-screen mx-auto justify-between items-center'>
+    <div className='flex flex-col w-2/4 min-w-[500px] h-screen mx-auto justify-between items-center border-x-[1px] border-neutral-800'>
       <div
-        className='flex flex-col p-10 gap-4 w-full h-full
+        className='flex flex-col mt-14 gap-4 w-full h-full
         overflow-y-scroll scrollbar-thin scrollbar-thumb-neutral-300 scrollbar-thumb-rounded-full hover:scrollbar-thumb-neutral-400'>
-        <span className=''>{validationMessage}</span>
+        <div className='flex flex-col px-5 p-2'>
+          <span className='font-bold'>Milind</span>
+          <span className=''>{validationMessage}</span>
+        </div>
       </div>
-      <div className='w-full p-4 px-5 bg-neutral-200 '>
+      <div className='w-full p-3 bg-neutral-200'>
         <div
-          className='flex w-full border-2 border-neutral-400 rounded-full overflow-hidden px-5 p-3 bg-white
-        focus-within:border-2 focus-within:border-neutral-800 relative'>
+          className='flex w-full border-[1px] border-neutral-200  rounded-full overflow-hidden px-5 p-2 bg-white
+        focus-within:border-[1px] focus-within:border-neutral-800 relative'>
           <input
             type='textarea'
             value={inputValue}
@@ -45,7 +48,7 @@ export default function MessageWindow() {
           />
           <div className='w-6'></div>
           <button
-            className='absolute right-2 bottom-2 bg-black text-white rounded-full w-8 h-8'
+            className='absolute right-2 bottom-2 bg-black text-white rounded-full w-6 h-6'
             onClick={() => submitxyz()}>
             ⯅
           </button>
