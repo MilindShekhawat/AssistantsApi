@@ -1,4 +1,5 @@
 //? This file connects with next.js's api routes.
+
 // Get a list of assistants
 export const GetAssistants = async () => {
   const response = await fetch("http://localhost:3000/api/assistants", {
@@ -54,8 +55,8 @@ export const RetrieveThread = async (threadId) => {
     headers: { "Content-Type": "application/json" },
   })
   if (!response.ok) {
-    console.error("Failed to retrieve thread")
-    throw new Error("Failed to retrieve thread")
+    console.error("Failed to get thread")
+    throw new Error("Failed to get thread")
   }
   const data = await response.json()
   console.log("Thread retrieved successfully")
@@ -70,11 +71,11 @@ export const DeleteThread = async (threadId) => {
     headers: { "Content-Type": "application/json" },
   })
   if (!response.ok) {
-    console.error("Failed to retrieve thread")
-    throw new Error("Failed to retrieve thread")
+    console.error("Failed to delete thread")
+    throw new Error("Failed to delete thread")
   }
   const data = await response.json()
-  console.log("Thread retrieved successfully")
+  console.log("Thread deleteed successfully")
   //console.log(data.myThread)
   return data.myThread
 }
@@ -96,7 +97,7 @@ export const CreateMessage = async (threadId, message) => {
   return data.threadMessages
 }
 
-//Get list of all messages in a thread
+// Get list of all messages in a thread
 export const GetMessages = async (threadId) => {
   const response = await fetch(`http://localhost:3000/api/threads/${threadId}/messages`, {
     method: "GET",
@@ -110,4 +111,37 @@ export const GetMessages = async (threadId) => {
   console.log("Messages retrieved successfully")
   //console.log(data.threadMessages)
   return data.threadMessages
+}
+
+// Create a run
+export const CreateRun = async (threadId, assistantId) => {
+  const response = await fetch(`http://localhost:3000/api/threads/${threadId}/runs`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ assistant_id: assistantId }),
+  })
+  if (!response.ok) {
+    console.error("Failed to create a run")
+    throw new Error("Failed to create a run")
+  }
+  const data = await response.json()
+  console.log("Run created successfully")
+  //console.log(data.run)
+  return data.run
+}
+
+// List all  runs
+export const GetRuns = async (threadId) => {
+  const response = await fetch(`http://localhost:3000/api/threads/${threadId}/runs`, {
+    method: "GET",
+    headers: { "Content-Type": "application/json" },
+  })
+  if (!response.ok) {
+    console.error("Failed to get runs")
+    throw new Error("Failed to get runs")
+  }
+  const data = await response.json()
+  console.log("Runs retrieved successfully")
+  //console.log(data.runs)
+  return data.runs
 }
