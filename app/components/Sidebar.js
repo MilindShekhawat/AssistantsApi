@@ -15,11 +15,11 @@ export default function Sidebar(props) {
   }
 
   return (
-    <div className='flex flex-col bg-black h-screen border-r border-neutral-800'>
+    <div className='flex flex-col h-screen bg-black border-r border-neutral-800'>
       {collapsedSidebar ? (
-        <div className='h-14 min-h-14 border-b border-neutral-800'> </div>
+        <div className='border-b h-14 min-h-14 border-neutral-800'> </div>
       ) : (
-        <div className='font-bold h-14 text-xl text-neutral-200 pl-5 p-3 border-b border-neutral-800'>Assistants</div>
+        <div className='p-3 pl-5 text-xl font-bold border-b h-14 text-neutral-200 border-neutral-800'>Assistants</div>
       )}
       <div
         className={`overflow-y-scroll mt-2 ${collapsedSidebar == true ? "w-16" : "w-64"} 

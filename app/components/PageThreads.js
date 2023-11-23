@@ -8,15 +8,15 @@ import MessageWindow from "./MessageWindow"
 export default function PageThreads(props) {
   return (
     <Provider store={store}>
-      <div className='flex relative'>
-        <hr className='border-neutral-800 w-full absolute top-[55px]' />
+      <div className='relative flex'>
+        <hr className='absolute w-full border-neutral-800 top-14' />
         <Sidebar
           assistants={props.assistants}
           isCollapsed={true}
         />
         <ThreadsSidebar assistant={props.assistant} />
         <MessageWindow />
-        <hr className='border-neutral-800 w-full absolute bottom-[65.55px]' />
+        <hr className='border-neutral-800 w-full absolute bottom-[64px]' />
       </div>
     </Provider>
   )
