@@ -9,8 +9,9 @@ export const GetAssistants = async () => {
     console.error("Failed to get assistants")
     throw new Error("Failed to get assistants")
   }
-  console.log("Assistants retrieved successfully")
   const data = await response.json()
+  console.log("Assistants retrieved successfully")
+  //console.log(data.myAssistants)
   return data.myAssistants
 }
 
@@ -24,8 +25,9 @@ export const GetAssistant = async (assistantId) => {
     console.error("Failed to get assistant")
     throw new Error("Failed to get assistant")
   }
-  console.log("Assistant retrieved successfully")
   const data = await response.json()
+  console.log("Assistant retrieved successfully")
+  //console.log(data.myAssistant)
   return data.myAssistant
 }
 
@@ -39,8 +41,9 @@ export const CreateThread = async (threadId) => {
     console.error("Failed to create thread")
     throw new Error("Failed to create thread")
   }
-  console.log("Thread created successfully")
   const data = await response.json()
+  console.log("Thread created successfully")
+  //console.log(data.emptyThread)
   return data.emptyThread
 }
 
@@ -54,8 +57,9 @@ export const RetrieveThread = async (threadId) => {
     console.error("Failed to retrieve thread")
     throw new Error("Failed to retrieve thread")
   }
-  console.log("Thread retrieved successfully")
   const data = await response.json()
+  console.log("Thread retrieved successfully")
+  //console.log(data.myThread)
   return data.myThread
 }
 
@@ -69,7 +73,41 @@ export const DeleteThread = async (threadId) => {
     console.error("Failed to retrieve thread")
     throw new Error("Failed to retrieve thread")
   }
-  console.log("Thread retrieved successfully")
   const data = await response.json()
+  console.log("Thread retrieved successfully")
+  //console.log(data.myThread)
   return data.myThread
+}
+
+// Create a message in a thread
+export const CreateMessage = async (threadId, message) => {
+  const response = await fetch(`http://localhost:3000/api/threads/${threadId}/messages`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ message: message }),
+  })
+  if (!response.ok) {
+    console.error("Failed to create message")
+    throw new Error("Failed to create message")
+  }
+  const data = await response.json()
+  console.log("Message created successfully")
+  //console.log(data.threadMessages)
+  return data.threadMessages
+}
+
+//Get list of all messages in a thread
+export const GetMessages = async (threadId) => {
+  const response = await fetch(`http://localhost:3000/api/threads/${threadId}/messages`, {
+    method: "GET",
+    headers: { "Content-Type": "application/json" },
+  })
+  if (!response.ok) {
+    console.error("Failed to get messages")
+    throw new Error("Failed to get messages")
+  }
+  const data = await response.json()
+  console.log("Messages retrieved successfully")
+  //console.log(data.threadMessages)
+  return data.threadMessages
 }
