@@ -7,7 +7,8 @@ export const openai = new OpenAI({
 
 // Create a new thread
 export async function POST() {
-  // const emptyThread = await openai.beta.threads.create()
-  // console.log("CREATE", emptyThread)
-  // return NextResponse.json({ emptyThread })
+  const emptyThread = await openai.beta.threads.create()
+
+  console.log("CREATE THREAD", emptyThread)
+  return NextResponse.json({ emptyThread })
 }

@@ -9,6 +9,8 @@ export const openai = new OpenAI({
 export async function GET(request, params) {
   const threadId = params.params.threadId
   const myThread = await openai.beta.threads.retrieve(threadId)
+
+  //console.log("GET THREAD", myThread)
   return NextResponse.json({ myThread })
 }
 
@@ -16,5 +18,7 @@ export async function GET(request, params) {
 export async function DELETE(request, params) {
   const threadId = params.params.threadId
   const myThread = await openai.beta.threads.del(threadId)
+
+  console.log("DELETE THREAD", myThread)
   return NextResponse.json({ myThread })
 }
