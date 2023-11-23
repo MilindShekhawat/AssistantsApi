@@ -3,6 +3,7 @@ import Sidebar from "./Sidebar"
 import { Provider } from "react-redux"
 import { store } from "../store"
 import ThreadsSidebar from "./ThreadsSidebar"
+import MessageWindow from "./MessageWindow"
 
 export default function PageThreads(props) {
   return (
@@ -13,6 +14,7 @@ export default function PageThreads(props) {
           isCollapsed={true}
         />
         <ThreadsSidebar assistant={props.assistant} />
+        <MessageWindow />
       </div>
     </Provider>
   )
