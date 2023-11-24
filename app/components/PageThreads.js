@@ -16,7 +16,7 @@ export default function PageThreads(props) {
         />
         <ThreadsSidebar assistant={props.assistant} />
         <MessageWindow />
-        <hr className='border-neutral-800 w-full absolute bottom-[64px]' />
+        <hr className='absolute w-full border-neutral-800 bottom-[65.6px]' />
       </div>
     </Provider>
   )

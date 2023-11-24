@@ -33,21 +33,21 @@ export default function MessageWindow() {
   console.log(messageArray)
   return (
     <div className='flex relative flex-col w-2/4 min-w-[500px] h-screen mx-auto justify-between items-center border-x-[1px] border-neutral-800'>
-      <div className='absolute right-2 top-14 bottom-[64px] h-auto border-l-[1px] border-neutral-800'></div>
-      <div className='flex flex-col-reverse w-full h-full overflow-y-scroll mt-14 scrollbar-thin scrollbar-thumb-neutral-800 hover:scrollbar-thumb-neutral-400'>
+      <div className='flex flex-col-reverse w-full h-full overflow-y-scroll mt-14 scrollbar scrollbar-thumb-neutral-800 hover:scrollbar-thumb-neutral-300'>
         {messageArray
           ? messageArray.data.map((message) => (
-              <div
-                key={message.id}
-                className='flex flex-col p-2 px-5'>
-                <span className='font-bold'>{message.role}</span>
-                <span className=''>{message.content[0].text.value}</span>
+              <div key={message.id} className='flex px-5 pb-4 ml-4'>
+                <div className='flex-shrink-0 w-6 h-6 mt-0.5 mr-2 bg-black rounded-full'></div>
+                <div className='flex flex-col'>
+                  <span className='font-bold '>{message.role}</span>
+                  <span className=''>{message.content[0].text.value}</span>
+                </div>
               </div>
             ))
           : ""}
       </div>
-      <div className='w-full p-3 bg-neutral-200 transition duration-300 ease-in focus-within:bg-neutral-400 border-t-[1px] border-black'>
-        <div className='relative flex w-full p-2 px-5 overflow-hidden bg-white rounded-full focus-within:border-neutral-800'>
+      <div className='w-full p-3 px-4 transition duration-300 ease-in focus-within:bg-neutral-300 border-t-[1px] border-black'>
+        <div className='relative flex w-full p-2 px-5 border-[1px] border-neutral-800 overflow-hidden bg-white focus-within:border-neutral-800'>
           <input
             type='textarea'
             value={inputValue}
@@ -64,6 +64,12 @@ export default function MessageWindow() {
           </button>
         </div>
       </div>
+      {/* VERTICAL LINES */}
+      <div className='absolute right-4 top-14 bottom-0 h-auto border-l-[1px] border-neutral-800'></div>
+      <div className='absolute left-4 top-14 bottom-0 h-auto border-l-[1px] border-neutral-800'></div>
+      <hr className='absolute w-full border-neutral-800 bottom-3' />
+      <hr className='absolute w-full border-neutral-800 bottom-[52.75px]' />
+      {/* VERTICAL LINES */}
     </div>
   )
 }
