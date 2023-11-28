@@ -33,8 +33,7 @@ export const GetAssistant = async (assistantId) => {
 }
 
 // Create a new thread
-//TODO frontend
-export const CreateThread = async (threadId) => {
+export const CreateThread = async () => {
   const response = await fetch(`http://localhost:3000/api/threads`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
@@ -45,14 +44,29 @@ export const CreateThread = async (threadId) => {
   }
   const data = await response.json()
   console.log("Thread created successfully")
-  //console.log(data.emptyThread)
-  return data.emptyThread
+  //console.log(data.threads)
+  return data.threads
 }
 
+// Retrieve a list of threads
+export const GetThreads = async () => {
+  const response = await fetch(`http://localhost:3000/api/threads`, {
+    method: "GET",
+    headers: { "Content-Type": "application/json" },
+  })
+  if (!response.ok) {
+    console.error("Failed to get threads")
+    throw new Error("Failed to get threads")
+  }
+  const data = await response.json()
+  console.log("Threads retrieved successfully")
+  console.log(data.threads)
+  return data.threads
+}
 // TODO Retrieve a thread
 //TODO frontend
-export const RetrieveThread = async (threadId) => {
-  const response = await fetch(`http://localhost:3000/api/threads/thread_y6fQawHZgGz0qyQRgL35PGes`, {
+export const GetThread = async (threadId) => {
+  const response = await fetch(`http://localhost:3000/api/threads/${threadId}`, {
     method: "GET",
     headers: { "Content-Type": "application/json" },
   })

@@ -3,21 +3,17 @@ import { useState } from "react"
 import { selectAssistant } from "../features/assistants/assistantSlice"
 import { useDispatch, useSelector } from "react-redux"
 import Link from "next/link"
-import { CreateThread, RetrieveThread } from "../services/apiendpoints"
+import { CreateThread } from "../services/apiendpoints"
 import { useEffect } from "react"
 
 export default function ThreadsSidebar(props) {
   const [activeItem, setActiveItem] = useState(null)
   // const [thread, SetThread] = useState("")
 
-  function CreateNewThread() {
-    const data = CreateThread()
+  async function CreateNewThread() {
+    const data = await CreateThread()
     console.log("ThreadSideBar", data)
   }
-
-  // const thread = RetrieveThread()
-  // SetThread(thread)
-  // console.log(thread)
 
   return (
     <div className='relative flex flex-col w-64 h-screen bg-black border-r border-neutral-800'>
@@ -28,10 +24,11 @@ export default function ThreadsSidebar(props) {
         </button>
       </div>
       <div className='h-full overflow-y-scroll scrollbar-thin scrollbar-thumb-neutral-800 scrollbar-thumb-rounded-full hover:scrollbar-thumb-neutral-600'>
-        {/* To map */}
-        <div className='flex p-2 pl-5 m-2 mt-2 overflow-hidden bg-neutral-900 rounded-3xl'>
-          <span className='font-bold text-neutral-200'>thread.id</span>
-        </div>
+        {props.threads.map((thread) => (
+          <div key={thread.threadId} className='flex p-2 pl-5 m-2 mt-2 overflow-hidden bg-neutral-900 rounded-3xl'>
+            <span className='font-bold text-neutral-200'>{thread.threadId}</span>
+          </div>
+        ))}
       </div>
       {/* VERTICAL LINES */}
       <div className='flex-shrink-0 h-[66.6px] border-t-[1px] border-neutral-800'></div>
