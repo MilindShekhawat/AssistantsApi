@@ -5,6 +5,7 @@ export const GetAssistants = async () => {
   const response = await fetch("http://localhost:3000/api/assistants", {
     method: "GET",
     headers: { "Content-Type": "application/json" },
+    cache: "no-store",
   })
   if (!response.ok) {
     console.error("Failed to get assistants")
@@ -53,6 +54,7 @@ export const GetThreads = async () => {
   const response = await fetch(`http://localhost:3000/api/threads`, {
     method: "GET",
     headers: { "Content-Type": "application/json" },
+    cache: "no-store",
   })
   if (!response.ok) {
     console.error("Failed to get threads")
@@ -60,7 +62,7 @@ export const GetThreads = async () => {
   }
   const data = await response.json()
   console.log("Threads retrieved successfully")
-  console.log(data.threads)
+  //console.log(data.threads)
   return data.threads
 }
 // TODO Retrieve a thread
