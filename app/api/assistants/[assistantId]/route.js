@@ -8,5 +8,7 @@ export const openai = new OpenAI({
 // Get a single assistant
 export async function GET(request, params) {
   const myAssistant = await openai.beta.assistants.retrieve(params.params.assistantId)
+
+  //console.log("GET ASSISTANT", myAssistant)
   return NextResponse.json({ myAssistant })
 }

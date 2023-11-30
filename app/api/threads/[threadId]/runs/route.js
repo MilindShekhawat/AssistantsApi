@@ -13,6 +13,7 @@ export async function GET(request, params) {
   //console.log("GET RUNS", runs)
   return NextResponse.json({ runs })
 }
+
 // Create a run
 export async function POST(request, params) {
   const assistant = await request.json()

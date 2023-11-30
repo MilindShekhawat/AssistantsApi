@@ -8,9 +8,10 @@ export const openai = new OpenAI({
 
 // Retrieve a list of threads
 export async function GET() {
+  // const { userId } = await request.json()
+  // console.log(userId)
   const threads = await prisma.threads.findMany()
-
-  console.log("GET THREADS", threads)
+  //console.log("GET THREADS", threads)
   return NextResponse.json({ threads })
 }
 
