@@ -14,8 +14,8 @@ export default function MessageWindow(props) {
     if (e.key === "Enter") {
       e.preventDefault()
       if (message.trim() !== "") {
-        CreateMessage("thread_y6fQawHZgGz0qyQRgL35PGes", message)
-        CreateRun("thread_y6fQawHZgGz0qyQRgL35PGes", props.param)
+        CreateMessage(props.threadId, message)
+        CreateRun(props.threadId, props.assistantId)
       }
       setMessage("")
     }
@@ -24,7 +24,7 @@ export default function MessageWindow(props) {
   //TODO Test button to return message list. The functionality would be implemented by checking for the run status and displaying the
   //TODO message when a run is complete.
   const submitxyz = async () => {
-    const messageList = await GetMessages("thread_y6fQawHZgGz0qyQRgL35PGes")
+    const messageList = await GetMessages(props.threadId)
     console.log("Message List", messageList.data)
     setMessageArray(messageList)
   }
