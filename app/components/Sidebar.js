@@ -1,18 +1,12 @@
 "use client"
 import { useState } from "react"
-import { listAssistants, selectAssistant } from "../features/assistants/assistantSlice"
-import { useDispatch, useSelector } from "react-redux"
 import Link from "next/link"
 
+//Sidebar, contains all of the available assistants
 export default function Sidebar(props) {
-  const dispatch = useDispatch()
+  //Sidebar states for assistant selection and if the sidebar is collapsed or not
   const [activeItem, setActiveItem] = useState(null)
   const collapsedSidebar = props.isCollapsed
-
-  function displayAssistant(assistant) {
-    setActiveItem(assistant)
-    dispatch(selectAssistant(assistant))
-  }
 
   return (
     <div className='relative flex flex-col h-screen bg-black border-r border-neutral-800'>
@@ -29,12 +23,12 @@ export default function Sidebar(props) {
         {props.assistants.map((assistant) => (
           <div key={assistant.name}>
             <Link
-              href={`/${assistant.id}`}
-              key={assistant.name}
-              onMouseEnter={() => displayAssistant(assistant)}
               className={`flex h-11 mt-2 rounded-3xl overflow-hidden m-1.5
               ${collapsedSidebar == true ? "text-center bg-neutral-800" : "pl-5 p-2"} 
-              ${activeItem === assistant ? "bg-neutral-800" : ""}`}>
+              ${activeItem === assistant ? "bg-neutral-800" : ""}`}
+              href={`/${assistant.id}`}
+              key={assistant.name}
+              onMouseEnter={() => setActiveItem(assistant)}>
               <span className={`${collapsedSidebar == true ? "text-xs" : "font-bold"} text-neutral-200`}>
                 {assistant.name}
               </span>
@@ -42,10 +36,9 @@ export default function Sidebar(props) {
           </div>
         ))}
       </div>
-      {/* VERTICAL LINES */}
-      <div className='flex-shrink-0 h-[66.6px] border-t-[1px] border-neutral-800'></div>
+      {/* LINES FOR DESIGN */}
+      <div className='flex-shrink-0 h-[66.6px] border-t-[1px] border-neutral-800 flex p-3 items-center'></div>
       <div className='absolute right-2 top-14 bottom-[66.6px] h-auto border-l-[1px] border-neutral-800'></div>
-      {/* <button onClick={() => setCollapsedSidebar(!collapsedSidebar)}>Click</button> */}
     </div>
   )
 }
