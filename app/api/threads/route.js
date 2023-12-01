@@ -6,23 +6,21 @@ export const openai = new OpenAI({
   apiKey: process.env.OPEN_AI_KEY,
 })
 
-// Retrieve a list of threads
-export async function GET() {
-  // const { userId } = await request.json()
-  // console.log(userId)
-  const threads = await prisma.threads.findMany()
-  //console.log("GET THREADS", threads)
-  return NextResponse.json({ threads })
-}
+// // Retrieve a list of threads
+// export async function GET(request, params) {
+//   const threads = await prisma.threads.findMany()
+//   //console.log("GET THREADS", threads)
+//   return NextResponse.json({ threads })
+// }
 
-// Create a new thread
-export async function POST() {
-  const emptyThread = await openai.beta.threads.create()
-  const threadId = { threadId: emptyThread.id }
-  const threads = await prisma.threads.create({
-    data: threadId,
-  })
+// // Create a new thread
+// export async function POST() {
+//   const emptyThread = await openai.beta.threads.create()
+//   const threadId = { threadId: emptyThread.id }
+//   const threads = await prisma.threads.create({
+//     data: threadId,
+//   })
 
-  console.log("CREATE THREAD", emptyThread)
-  return NextResponse.json({ emptyThread })
-}
+//   console.log("CREATE THREAD", emptyThread)
+//   return NextResponse.json({ emptyThread })
+// }

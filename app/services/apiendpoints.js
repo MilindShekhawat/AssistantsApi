@@ -75,9 +75,12 @@ export const CreateThread = async () => {
 }
 
 // Get a list of threads
-export const GetThreads = async () => {
+export const GetThreads = async (assistantId) => {
+  if (!assistantId) {
+    assistantId = ""
+  }
   try {
-    const response = await fetch(`${baseurl}/api/threads`, {
+    const response = await fetch(`${baseurl}/api/assistants/${assistantId}/threads`, {
       method: "GET",
       headers: { "Content-Type": "application/json" },
       // cache: "no-store",
@@ -115,6 +118,7 @@ export const GetUserThreads = async (userId) => {
     console.error(`ERROR occurred: ${error}`)
   }
 }
+
 // Get a thread
 export const GetThread = async (threadId) => {
   try {
