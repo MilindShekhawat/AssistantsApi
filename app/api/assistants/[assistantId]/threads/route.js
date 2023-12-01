@@ -8,6 +8,7 @@ export const openai = new OpenAI({
 
 // Retrieve a list of threads
 export async function GET(request, params) {
+  //Filter threads that are present in the provided assistant
   const threads = await prisma.threads.findMany({
     where: {
       assistantId: {

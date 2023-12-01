@@ -55,9 +55,10 @@ export const GetAssistant = async (assistantId) => {
 }
 
 // Create a new thread
-export const CreateThread = async () => {
+//TODO api logic to add the newly created thread into database
+export const CreateThread = async (assistantId) => {
   try {
-    const response = await fetch(`${baseurl}/api/threads`, {
+    const response = await fetch(`${baseurl}/api/assistants/${assistantId}/threads`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
     })
@@ -76,10 +77,11 @@ export const CreateThread = async () => {
 
 // Get a list of threads
 export const GetThreads = async (assistantId) => {
-  if (!assistantId) {
-    assistantId = ""
-  }
   try {
+    //If assistantId is not provided then set "" as assistant id. "" is safer than undefined
+    if (!assistantId) {
+      assistantId = ""
+    }
     const response = await fetch(`${baseurl}/api/assistants/${assistantId}/threads`, {
       method: "GET",
       headers: { "Content-Type": "application/json" },
@@ -99,6 +101,7 @@ export const GetThreads = async (assistantId) => {
 }
 
 // Get a list of threads by user
+//? Will do ig, or will update the GetThreads instead.
 export const GetUserThreads = async (userId) => {
   try {
     const response = await fetch(`${baseurl}/api/threads${userId}`, {
@@ -141,7 +144,7 @@ export const GetThread = async (threadId) => {
 }
 
 // Delete a thread
-//TODO frontend
+//TODO frontend functionality + delete from database logic
 export const DeleteThread = async (threadId) => {
   try {
     const response = await fetch(`${baseurl}/api/threads/${threadId}`, {
