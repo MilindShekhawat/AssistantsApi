@@ -11,5 +11,7 @@ datasource db {
 }
 
 model Threads {
-  threadId String @id
+  id          Int    @id @default(autoincrement())
+  threadId    String
+  assistantId String
 }
