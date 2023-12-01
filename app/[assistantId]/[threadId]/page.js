@@ -9,14 +9,15 @@ export default async function ThreadsPage({ params }) {
   //Calling apis here and will prop drill them to components
   const myAssistant = await GetAssistant(params.assistantId)
   const myAssistants = await GetAssistants()
-  const threads = await GetThreads()
+  const threads = await GetThreads(params.assistantId)
 
   return (
     <main className='relative flex'>
-      <hr className='absolute w-full border-neutral-800 top-14' />
       <Sidebar assistants={myAssistants.data} isCollapsed={true} />
       <ThreadsSidebar assistant={myAssistant} threads={threads} />
       <MessageWindow assistantId={params.assistantId} threadId={params.threadId} />
+      {/* LINES FOR DESIGN */}
+      <hr className='absolute w-full border-neutral-800 top-14' />
       <hr className='absolute w-full border-neutral-800 bottom-[65.6px]' />
     </main>
   )

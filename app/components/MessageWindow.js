@@ -38,7 +38,7 @@ export default function MessageWindow(props) {
                 <div className='flex-shrink-0 w-6 h-6 mt-0.5 mr-2 bg-black rounded-full'></div>
                 <div className='flex flex-col'>
                   <span className='font-bold '>{message.role}</span>
-                  <span className=''>{message.content[0].text.value}</span>
+                  <span className='leading-7 tracking-wide'>{message.content[0].text.value}</span>
                 </div>
               </div>
             ))
