@@ -10,6 +10,23 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+// model users {
+//   user_id      String      @id
+//   assistant_id assistants[]
+// }
+
+// model assistants {
+//   assistant_id String    @id
+//   user_id      users[]
+//   thread_id    threads[]
+// }
+
+// model threads {
+//   thread_id    String      @id
+//   assistants   assistants? @relation(fields: [assistant_id], references: [assistant_id])
+//   assistant_id String?
+// }
+
 model Threads {
   id          Int    @id @default(autoincrement())
   threadId    String
