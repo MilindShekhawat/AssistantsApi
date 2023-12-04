@@ -191,7 +191,7 @@ export const GetMessages = async (threadId) => {
     const response = await fetch(`${baseurl}/api/threads/${threadId}/messages`, {
       method: "GET",
       headers: { "Content-Type": "application/json" },
-      // cache:'no-store'
+      cache: "no-store",
     })
     if (!response.ok) {
       console.error("Failed to get messages")

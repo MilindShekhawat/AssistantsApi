@@ -21,6 +21,7 @@ export default function MessageWindow(props) {
       if (message.trim() !== "") {
         CreateMessage(props.threadId, message)
         const run = await CreateRun(props.threadId, props.assistantId)
+        setMessages()
 
         while (true) {
           const thisrun = await GetRun(props.threadId, run.id)
@@ -32,19 +33,16 @@ export default function MessageWindow(props) {
             break
           }
         }
+        setMessages()
       }
-
-      const messageList = await GetMessages(props.threadId)
-      console.log("Message List", messageList.data)
-      setMessageArray(messageList)
-      setMessage("")
     }
   }
 
-  const submitxyz = async () => {
-    // const messageList = await GetMessages(props.threadId)
-    // console.log("Message List", messageList.data)
-    // setMessageArray(messageList)
+  const setMessages = async () => {
+    setMessage("")
+    const messageList = await GetMessages(props.threadId)
+    console.log("Message List", messageList.data)
+    setMessageArray(messageList)
   }
 
   return (
