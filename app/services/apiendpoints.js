@@ -68,8 +68,8 @@ export const CreateThread = async (assistantId, userId) => {
     }
     const data = await response.json()
     console.log("Thread created successfully")
-    //console.log(data.threads)
-    return data.threads
+    //console.log(data,emptyThread)
+    return data.emptyThread
   } catch (error) {
     console.error(`ERROR occurred: ${error}`)
   }
