@@ -14,6 +14,9 @@ export async function GET(request, params) {
       assistantId: {
         contains: params.params.assistantId,
       },
+      userId: {
+        contains: params.params.userId,
+      },
     },
   })
   //console.log("GET THREADS", threads)
