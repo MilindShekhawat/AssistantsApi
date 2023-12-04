@@ -22,6 +22,8 @@ export default function Sidebar(props) {
               className={`flex h-11 mt-2 rounded-3xl overflow-hidden m-1.5
               ${collapsedSidebar == true ? "bg-neutral-800" : "pl-5 p-2"} 
               ${activeItem === assistant ? "bg-neutral-800" : ""}`}
+              //TODO add logic to switch to first threadid present in assistant
+              //TODO create a new thread in no threads are present
               href={`/${assistant.id}/thread_y6fQawHZgGz0qyQRgL35PGes`}
               key={assistant.name}
               onMouseEnter={() => setActiveItem(assistant)}>
