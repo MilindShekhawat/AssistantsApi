@@ -1,32 +1,50 @@
 "use client"
-import { useState } from "react"
-import { CreateMessage, CreateRun, GetMessages } from "../services/apiendpoints"
+import { useState, useEffect } from "react"
+import { CreateMessage, CreateRun, GetMessages, GetRun } from "../services/apiendpoints"
 
 //Message Window, messages and runs are executed here
 export default function MessageWindow(props) {
   //States to enter message and display messageArray back
+  let runStatus = null
   const [message, setMessage] = useState("")
   const [messageArray, setMessageArray] = useState("")
+  const breakLoop = ["completed", "failed", "cancelled"]
+
+  useEffect(() => {
+    setMessageArray(props.messageList)
+  }, [])
 
   //Submit function to create a new message and execute a run. Runs when enter is pressed
-  //TODO Find a way to dynamically pass a thread
   const handleSubmit = async (e) => {
     if (e.key === "Enter") {
       e.preventDefault()
       if (message.trim() !== "") {
         CreateMessage(props.threadId, message)
-        CreateRun(props.threadId, props.assistantId)
+        const run = await CreateRun(props.threadId, props.assistantId)
+
+        while (true) {
+          const thisrun = await GetRun(props.threadId, run.id)
+          runStatus = thisrun.status
+          //console.log(runStatus.status)
+          console.log("Status", runStatus)
+          if (breakLoop.includes(runStatus)) {
+            console.log("break")
+            break
+          }
+        }
       }
+
+      const messageList = await GetMessages(props.threadId)
+      console.log("Message List", messageList.data)
+      setMessageArray(messageList)
       setMessage("")
     }
   }
 
-  //TODO Test button to return message list. The functionality would be implemented by checking for the run status and displaying the
-  //TODO message when a run is complete.
   const submitxyz = async () => {
-    const messageList = await GetMessages(props.threadId)
-    console.log("Message List", messageList.data)
-    setMessageArray(messageList)
+    // const messageList = await GetMessages(props.threadId)
+    // console.log("Message List", messageList.data)
+    // setMessageArray(messageList)
   }
 
   return (
