@@ -18,7 +18,7 @@ export const GetAssistants = async () => {
     const response = await fetch(`${baseurl}/api/assistants`, {
       method: "GET",
       headers: { "Content-Type": "application/json" },
-      cache: "no-store",
+      //cache: "no-store",
     })
     if (!response.ok) {
       console.error("Failed to get assistants")
@@ -39,7 +39,7 @@ export const GetAssistant = async (assistantId) => {
     const response = await fetch(`${baseurl}/api/assistants/${assistantId}`, {
       method: "GET",
       headers: { "Content-Type": "application/json" },
-      cache: "no-store",
+      //cache: "no-store",
     })
     if (!response.ok) {
       console.error("Failed to get assistant")
@@ -186,7 +186,6 @@ export const CreateMessage = async (threadId, message) => {
 }
 
 // Get list of all messages in a thread
-//TODO frontend, Will call this only once when page is rendered, call this with only the latest assistant reply and extract last message.
 export const GetMessages = async (threadId) => {
   try {
     const response = await fetch(`${baseurl}/api/threads/${threadId}/messages`, {
@@ -229,7 +228,6 @@ export const CreateRun = async (threadId, assistantId) => {
 }
 
 // List all runs
-//TODO frontend probably
 export const GetRuns = async (threadId) => {
   try {
     const response = await fetch(`${baseurl}/api/threads/${threadId}/runs`, {
@@ -245,6 +243,27 @@ export const GetRuns = async (threadId) => {
     console.log("Runs retrieved successfully")
     //console.log(data.runs)
     return data.runs
+  } catch (error) {
+    console.error(`ERROR occurred: ${error}`)
+  }
+}
+
+// List all runs
+export const GetRun = async (threadId, runId) => {
+  try {
+    const response = await fetch(`${baseurl}/api/threads/${threadId}/runs/${runId}`, {
+      method: "GET",
+      headers: { "Content-Type": "application/json" },
+      //cache: "no-store",
+    })
+    if (!response.ok) {
+      console.error("Failed to get run")
+      //throw new Error("Failed to get run")
+    }
+    const data = await response.json()
+    console.log("Run retrieved successfully")
+    //console.log(data.runs)
+    return data.run
   } catch (error) {
     console.error(`ERROR occurred: ${error}`)
   }
