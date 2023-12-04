@@ -24,11 +24,15 @@ export async function GET(request, params) {
 }
 
 // Create a new thread
-export async function POST() {
+export async function POST(request, params) {
   const emptyThread = await openai.beta.threads.create()
-  const threadId = { threadId: emptyThread.id }
+  const threadData = {
+    threadId: emptyThread.id,
+    assistantId: params.params.assistantId,
+    userId: params.params.userId,
+  }
   const threads = await prisma.threads.create({
-    data: threadId,
+    data: threadData,
   })
 
   console.log("CREATE THREAD", emptyThread)
