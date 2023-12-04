@@ -8,15 +8,15 @@ import { auth } from "@clerk/nextjs"
 export default async function ThreadsPage({ params }) {
   //Calling apis here and will prop drill them to components
   const { userId } = auth()
-  console.log("UserId", userId)
   const myAssistants = await GetAssistants()
   const myAssistant = await GetAssistant(params.assistantId)
   const threads = await GetThreads(params.assistantId, userId)
   const messageList = await GetMessages(params.threadId)
+
   return (
     <main className='relative flex'>
       <Sidebar assistants={myAssistants.data} isCollapsed={true} />
-      <ThreadsSidebar assistant={myAssistant} threads={threads} />
+      <ThreadsSidebar assistant={myAssistant} threads={threads} userId={userId} />
       <MessageWindow assistantId={params.assistantId} threadId={params.threadId} messageList={messageList} />
       {/* LINES FOR DESIGN */}
       <hr className='absolute w-full border-neutral-800 top-14' />

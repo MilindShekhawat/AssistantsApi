@@ -1,6 +1,6 @@
 import Sidebar from "./components/Sidebar"
 import Assistant from "./components/Assistant"
-import { GetAssistants, GetThreads } from "./services/apiendpoints"
+import { GetAssistants } from "./services/apiendpoints"
 
 //HomePage, Lists out all assistants with their information.
 export default async function Home() {
