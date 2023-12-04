@@ -26,7 +26,7 @@ export default function Sidebar(props) {
               ${activeItem === assistant ? "bg-neutral-800" : ""}`}
               //TODO add logic to switch to first threadid present in assistant
               //TODO create a new thread in no threads are present
-              href={`/${assistant.id}/thread_y6fQawHZgGz0qyQRgL35PGes`}
+              href={`/${assistant.id}`}
               key={assistant.name}
               onMouseEnter={() => setActiveItem(assistant)}>
               <span
