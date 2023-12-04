@@ -2,16 +2,17 @@ import ThreadsSidebar from "@/app/components/ThreadsSidebar"
 import MessageWindow from "@/app/components/MessageWindow"
 import Sidebar from "@/app/components/Sidebar"
 import { GetAssistant, GetAssistants, GetThreads, GetMessages } from "@/app/services/apiendpoints"
+import { auth } from "@clerk/nextjs"
 
-//* thread_y6fQawHZgGz0qyQRgL35PGes
 //Assistant Page where we can chat with that specific assistant
 export default async function ThreadsPage({ params }) {
   //Calling apis here and will prop drill them to components
+  const { userId } = auth()
+  console.log("UserId", userId)
   const myAssistants = await GetAssistants()
   const myAssistant = await GetAssistant(params.assistantId)
-  const threads = await GetThreads(params.assistantId)
+  const threads = await GetThreads(params.assistantId, userId)
   const messageList = await GetMessages(params.threadId)
-
   return (
     <main className='relative flex'>
       <Sidebar assistants={myAssistants.data} isCollapsed={true} />

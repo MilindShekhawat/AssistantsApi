@@ -56,9 +56,9 @@ export const GetAssistant = async (assistantId) => {
 
 // Create a new thread
 //TODO api logic to add the newly created thread into database
-export const CreateThread = async (assistantId) => {
+export const CreateThread = async (assistantId, userId) => {
   try {
-    const response = await fetch(`${baseurl}/api/assistants/${assistantId}/threads`, {
+    const response = await fetch(`${baseurl}/api/assistants/${assistantId}/${userId}/threads`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
     })
@@ -76,13 +76,16 @@ export const CreateThread = async (assistantId) => {
 }
 
 // Get a list of threads
-export const GetThreads = async (assistantId) => {
+export const GetThreads = async (assistantId, userId) => {
   try {
     //If assistantId is not provided then set "" as assistant id. "" is safer than undefined
     if (!assistantId) {
       assistantId = ""
     }
-    const response = await fetch(`${baseurl}/api/assistants/${assistantId}/threads`, {
+    if (!userId) {
+      userId = ""
+    }
+    const response = await fetch(`${baseurl}/api/assistants/${assistantId}/${userId}/threads`, {
       method: "GET",
       headers: { "Content-Type": "application/json" },
       // cache: "no-store",
@@ -90,28 +93,6 @@ export const GetThreads = async (assistantId) => {
     if (!response.ok) {
       console.error("Failed to get threads")
       //throw new Error("Failed to create threads")
-    }
-    const data = await response.json()
-    console.log("Threads retrieved successfully")
-    //console.log(data.threads)
-    return data.threads
-  } catch (error) {
-    console.error(`ERROR occurred: ${error}`)
-  }
-}
-
-// Get a list of threads by user
-//? Will do ig, or will update the GetThreads instead.
-export const GetUserThreads = async (userId) => {
-  try {
-    const response = await fetch(`${baseurl}/api/threads${userId}`, {
-      method: "GET",
-      headers: { "Content-Type": "application/json" },
-      // cache:'no-store'
-    })
-    if (!response.ok) {
-      console.error("Failed to get threads")
-      //throw new Error("Failed to get threads")
     }
     const data = await response.json()
     console.log("Threads retrieved successfully")
