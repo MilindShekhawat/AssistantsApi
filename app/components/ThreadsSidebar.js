@@ -1,4 +1,5 @@
 "use client"
+import Link from "next/link"
 
 //ThreadSidebar, shows all the threads present in an assistant
 export default function ThreadsSidebar(props) {
@@ -9,9 +10,12 @@ export default function ThreadsSidebar(props) {
       </div>
       <div className='h-full overflow-y-scroll scrollbar-thin scrollbar-thumb-neutral-800 scrollbar-thumb-rounded-full hover:scrollbar-thumb-neutral-600'>
         {props.threads.map((thread) => (
-          <div key={thread.threadId} className='flex p-2 px-5 m-2 mt-2 bg-neutral-900 rounded-3xl'>
+          <Link
+            href={`/${props.assistant.id}/${thread.threadId}`}
+            key={thread.threadId}
+            className='flex p-2 px-5 m-2 mt-2 bg-neutral-900 rounded-3xl'>
             <span className='font-bold truncate text-neutral-200'>{thread.threadId}</span>
-          </div>
+          </Link>
         ))}
       </div>
       {/* VERTICAL LINES */}
