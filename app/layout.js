@@ -4,7 +4,6 @@ import StoreProvider from "./store/StoreProvider"
 import { ClerkProvider } from "@clerk/nextjs"
 import { dark } from "@clerk/themes"
 import { GeistSans } from "geist/font/sans"
-import { GeistMono } from "geist/font/mono"
 
 const inter = Inter({ subsets: ["latin"] })
 
